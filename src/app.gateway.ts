@@ -39,10 +39,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection {
   }
 
   handleConnection(client: Socket) {
-    if (
-      client.handshake?.query?.backendKey ===
-      process.env.SECRET_KEY_ACCESS_TOKEN
-    ) {
+    if (client.handshake?.query?.backendKey === process.env.BACKEND_KEY) {
       return;
     }
 
