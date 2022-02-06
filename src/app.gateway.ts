@@ -26,10 +26,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection {
 
   @SubscribeMessage('message')
   handleMessage(client: Socket, payload: any): void {
-    if (
-      client.handshake?.query?.backendKey ===
-      process.env.SECRET_KEY_ACCESS_TOKEN
-    ) {
+    if (client.handshake?.query?.backendKey === process.env.BACKEND_KEY) {
       this.server.to(payload.room).emit('message', payload.data);
     }
   }
