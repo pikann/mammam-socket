@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import {
   OnGatewayConnection,
@@ -46,7 +46,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection {
       client.join(decoded.id);
       client.join(decoded.role);
     } catch (ex) {
-      throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+      return;
     }
   }
 }
